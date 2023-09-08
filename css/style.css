@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+body{
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/hd/5f297040585033.57851fbd33ae2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+header{
+    text-align: center;
+    padding: 20px 0;
+    font-size: large;
+}
+
+main{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    width: 80%;
+    padding:0px 0 ;
+    border-radius: 10px;
+    text-align: center;
+    font-size: x-large;
+    background-color: transparent;
+}
+
+button{
+    text-transform: capitalize;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(30, 96, 210);
+    color: aliceblue;
+}
+
+.pokemon-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5vh;
+    text-transform: capitalize;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 20px 30px;
+}
