@@ -2,36 +2,34 @@ const pokemonInput = document.getElementById('pokemonInput');
 const buscarPokemon = document.getElementById('buscarPokemon');
 const pokemonContainer = document.getElementById('pokemonContainer');
 
-buscarPokemon.addEventListener('click', () => {
-    // Obtener el número ingresado por el usuario
-    const pokemonNumber = pokemonInput.value;
+buscarPokemon.addEventListener('click', async(e)=>{
+    e.preventDefault();
+    const pokemonNumber= pokemonInput.value;
 
-    // Limpiar el contenedor antes de agregar nuevos datos
-    pokemonContainer.innerHTML = '';
-
-    if (!pokemonNumber) {
-        // Mostrar mensaje de error si no se ingresó un número
-        mostrarError('Por favor, ingresa un número de Pokémon válido.');
-    } else {
-        // Realizar una solicitud a la PokeAPI
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('No se pudo encontrar el Pokémon.');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                // Renderizar los datos del Pokémon en una tarjeta
-                renderizarPokemon(data);
-            })
-            .catch((error) => {
-                mostrarError(error.message);
-            });
+    if(!pokemonNumber){
+        mostrarError(`Ingresa un número de la pokedex`);
     }
-});
+    else{
+        try{
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`);
 
+            if(!response.ok){
+                throw new Error(`Ha fallado la conexión con la PokeAPI`)
+            }
+
+            const data = await response.json();
+
+            renderizarPokemon(data);
+        }
+        catch(error){
+            mostrarError(error.message)
+        }
+    }
+})
 function renderizarPokemon(data) {
+
+    pokemonContainer.innerHTML=``
+
     // Crear una tarjeta con los datos del Pokémon
     const card = document.createElement('div');
     card.classList.add('pokemon-card');
